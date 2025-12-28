@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Library</title>
+
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+
+    <!-- Font Awesome 4.7 -->
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="sidebar">
+        <h2>&#128218; Library</h2>
+
+
+        <a href="{% url 'library:dashboard' %}" class="nav-dashboard">
+            <i class="fa fa-home"></i> Dashboard
+        </a>
+
+        <a href="{% url 'library:books' %}" class="nav-books">
+            <i class="fa fa-book"></i> Books
+        </a>
+
+        <a href="{% url 'library:students' %}" class="nav-students">
+            <i class="fa fa-users"></i> Students
+        </a>
+
+        <a href="{% url 'library:issues' %}" class="nav-issued">
+            <i class="fa fa-exchange"></i> Issued Books
+        </a>
+
+        <a href="{% url 'library:logout' %}" class="nav-logout">
+            <i class="fa fa-sign-out"></i> Logout
+        </a>
+    </div>
+
+    <div class="main">
+        {% block content %}{% endblock %}
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+{% load static %}
+<html>
+    <head>
+    <meta charset="UTF-8">
+    <title>Issue Books</title>
+
+    <link rel="stylesheet" href="{% static 'css/Styles.css' %}">
+</head>
+<body>
+<h2>&#128215; Issue Book</h2>
+
+<form method="post">
+    {% csrf_token %}
+
+    <label>Student:</label>
+    <select name="student" required>
+        <option value="">Select Student</option>
+        {% for s in students %}
+            <option value="{{ s.id }}">{{ s.name }}</option>
+        {% endfor %}
+    </select>
+
+    <br><br>
+
+    <label>Book:</label>
+    <select name="book" required>
+        <option value="">Select Book</option>
+        {% for b in books %}
+            <option value="{{ b.id }}">{{ b.title }}</option>
+        {% endfor %}
+    </select>
+
+    <br><br>
+
+    <button type="submit">Issue</button>
+
+    <a href="{% url 'library:issues' %}" class="back-link"> ← Back </a>
+</form>
+</body>
+</html>

@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Students</title>
+    <link rel="stylesheet" href="{% static 'css/style3.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+<div class="page-header">
+    <h2>
+        &#127891; Students List
+    </h2>
+
+    <a href="{% url 'library:dashboard' %}" class="dashboard-link">
+        &#127968; Dashboard
+    </a>
+</div>
+<form method="get" class="search-form">
+    <input type="text" name="q" placeholder="Search by name / roll no / dept">
+    <button type="submit">
+        <i class="fa fa-search"></i> Search
+    </button>
+</form>
+
+<a href="/add-student/" class="add-btn">
+    <i class="fa fa-plus"></i> Add Student
+</a>
+
+<hr>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Roll No</th>
+        <th>Dept</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Actions</th>
+    </tr>
+
+    {% for s in students %}
+    <tr>
+        <td>{{ s.name }}</td>
+        <td>{{ s.roll_no }}</td>
+        <td>{{ s.department }}</td>
+        <td>{{ s.email }}</td>
+        <td>{{ s.phone }}</td>
+        <td>
+            <a href="/edit-student/{{ s.id }}/" class="edit-btn">
+                <i class="fa fa-pencil"></i> Edit
+            </a>
+
+            <a href="/delete-student/{{ s.id }}/"
+               class="delete-btn"
+               onclick="return confirm('Are you sure?');">
+                <i class="fa fa-trash"></i> Delete
+            </a>
+        </td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="6">No students found</td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>

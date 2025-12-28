@@ -1,0 +1,29 @@
+{% load static %}
+<html>
+<head>
+    <title>Add Book</title>
+    <link rel="stylesheet" href="{% static 'css/style4.css' %}">
+    <link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+
+<h2><i class="fa fa-book"></i> Add Book</h2>
+
+
+<form method="POST">
+    {% csrf_token %}
+
+    <input name="title" placeholder="Title" required>
+    <input name="author" placeholder="Author" required>
+    <input name="isbn" placeholder="ISBN" required>
+    <input name="quantity" type="number" placeholder="Quantity" required min="1">
+
+    <button type="submit">Add Book</button>
+</form>
+
+<a href="/books/">⬅ Back</a>
+
+</body>
+</html>

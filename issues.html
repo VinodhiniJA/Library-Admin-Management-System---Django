@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Issued Books</title>
+
+    <link rel="stylesheet" href="{% static 'css/style7.css' %}">
+</head>
+<body>
+
+<div class="page-header">
+    <h2>
+        &#128209; Issued Books
+    </h2>
+
+    <a href="{% url 'library:dashboard' %}" class="dashboard-link">
+        &#127968; Dashboard
+    </a>
+</div>
+
+<form method="get" class="search-form">
+    <input
+        type="text"
+        name="q"
+        placeholder="Search by student / book / issued-date"
+        value="{{ request.GET.q }}"
+    >
+    <button type="submit">
+        &#128269; Search
+    </button>
+</form>
+
+<a href="/issue-book/">&#10133; Issue Book</a>
+
+<hr>
+
+<table cellpadding="10">
+    <thead>
+        <tr>
+            <th>Student</th>
+            <th>Book</th>
+            <th>Issue Date</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for i in issues %}
+        <tr>
+            <td>{{ i.student.name }}</td>
+            <td>{{ i.book.title }}</td>
+            <td>{{ i.issue_date }}</td>
+
+            <td>
+                {% if i.returned %}
+                    <span class="returned">Returned</span>
+                {% else %}
+                    <span class="issued">Issued</span>
+                {% endif %}
+            </td>
+
+            <td>
+                {% if not i.returned %}
+                    <a href="/return-book/{{ i.id }}/">↩ Return</a>
+                {% else %}
+                    —
+                {% endif %}
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5" style="text-align:center; padding:20px;">
+                No issued books found
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</body>
+</html>

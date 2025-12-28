@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Student</title>
+    <link rel="stylesheet" href="{% static 'css/style4.css' %}">
+    <link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+
+<h2>
+    &#9998; Edit Student
+</h2>
+
+
+<form method="POST">
+    {% csrf_token %}
+
+    <input name="name" placeholder="Name" value="{{ student.name }}" required>
+    <input name="roll_no" placeholder="Roll No" value="{{ student.roll_no }}" required>
+    <input name="department" placeholder="Department" value="{{ student.department }}" required>
+    <input name="email" type="email" placeholder="Email" value="{{ student.email }}" required>
+    <input name="phone" placeholder="Phone" value="{{ student.phone }}" required>
+
+    <button type="submit">Update Student</button>
+</form>
+
+<a href="/students/">⬅ Back</a>
+
+</body>
+</html>

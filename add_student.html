@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Student</title>
+    <link rel="stylesheet" href="{% static 'css/style4.css' %}">
+</head>
+<body>
+
+<h2>&#129489;&#8205;&#127891; Add Student</h2>
+
+<form class="simple-form" method="post">
+    {% csrf_token %}
+
+    <input name="name" placeholder="Name" required>
+    <input name="roll_no" placeholder="Roll No" required>
+    <input name="department" placeholder="Department" required>
+    <input name="email" placeholder="Email" required>
+    <input name="phone" placeholder="Phone" required>
+
+    <button type="submit">Add Student</button>
+</form>
+
+<a class="back-link" href="/students/">⬅ Back</a>
+
+</body>
+</html>
